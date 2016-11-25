@@ -38,6 +38,8 @@ module Dynamoid
       def connect!
         @client = if Dynamoid::Config.endpoint?
           Aws::DynamoDB::Client.new(endpoint: Dynamoid::Config.endpoint)
+        elsif Dynamoid::Config.client?
+          Dynamoid::Config.client
         else
           Aws::DynamoDB::Client.new
         end
